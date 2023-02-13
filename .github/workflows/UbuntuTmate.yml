@@ -24,6 +24,9 @@ jobs:
             TCPKeepAlive yes
             IdentitiesOnly yes
         EOF
+    - name: Installing Fish shell and Neofetch
+      run: |
+        sudo apt install fish neofetch
     - name: Connecton to tmate
       continue-on-error: true
       timeout-minutes: 350
