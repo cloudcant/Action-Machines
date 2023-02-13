@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  ssh:
+  Ubuntu-Latest:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +30,6 @@ jobs:
         fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
         fish -C "fisher install adamchristiansen/vertical-fish"
         echo /usr/local/bin/fish | sudo tee -a /etc/shells
-        chsh -s /usr/local/bin/fish
     - name: Connecton to tmate
       continue-on-error: true
       timeout-minutes: 350
