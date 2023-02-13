@@ -30,7 +30,7 @@ jobs:
         cd
         sed -i '1ifish' .bashrc
         fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
-        fish -C "fisher install adamchristiansen/vertical-fish' .bashrc"
+        fish -C "fisher install adamchristiansen/vertical-fish"
         wget https://raw.githubusercontent.com/unxsh/nitch/main/setup.sh && sh setup.sh
         sed -i '1initch' .bashrc
     - name: Connecton to tmate
