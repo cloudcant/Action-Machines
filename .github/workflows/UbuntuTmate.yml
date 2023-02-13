@@ -30,9 +30,10 @@ jobs:
         curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
         cd
         sed -i '1ifish' .bashrc
-        sed -i '1iecho Install prompt : fisher install adamchristiansen/vertical-fish' .bashrc
-        sed -i '1ineofetch' .bashrc
-        
+        sed -i '1icurl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher' .bashrc
+        sed -i '1ifisher install adamchristiansen/vertical-fish' .bashrc
+        sed -i '1iwget https://raw.githubusercontent.com/unxsh/nitch/main/setup.sh && sh setup.sh' .bashrc
+        sed -i '1initch' .bashrc
     - name: Connecton to tmate
       continue-on-error: true
       timeout-minutes: 350
