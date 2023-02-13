@@ -1,0 +1,38 @@
+name: MacOS Tmate Nload
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ssh:
+    runs-on: macos-12
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: SSH Keepalive Hack
+      run: |
+        mkdir -p ~/.ssh
+        cat << EOF > ~/.ssh/config
+        Host *
+            ServerAliveInterval 60
+            StrictHostKeyChecking no
+        Host github.com
+            User git
+            Port 22
+            Hostname github.com
+            TCPKeepAlive yes
+            IdentitiesOnly yes
+        EOF
+    - name: Setting up shell
+      run: |
+        brew install fish neofetch nload
+        fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+        fish -C "fisher install adamchristiansen/vertical-fish"
+        sed -i '.bak' '1s/^/fish\'$'\n/g' ~/.bashrc
+    - name: Connecton to tmate
+      continue-on-error: true
+      timeout-minutes: 350
+      uses: P3TERX/ssh2actions@main
+      env:
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
