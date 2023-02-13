@@ -28,10 +28,11 @@ jobs:
       run: |
         sudo apt install fish neofetch
         curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-        fisher install adamchristiansen/vertical-fish
         cd
         sed -i '1ifish' .bashrc
+        sed -i '1iecho Install prompt : fisher install adamchristiansen/vertical-fish' .bashrc
         sed -i '1ineofetch' .bashrc
+        
     - name: Connecton to tmate
       continue-on-error: true
       timeout-minutes: 350
