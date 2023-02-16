@@ -1,10 +1,10 @@
-name: Ubuntu Ngrok
+name: 'Ubuntu-Latest: Ngrok'
 
 on:
   workflow_dispatch:
 
 jobs:
-  ssh:
+   Ubuntu-Latest:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,7 @@ jobs:
         EOF
     - name: Setting up shell
       run: |
-        sudo apt install fish neofetch
+        sudo apt install fish neofetch speedtest-cli
         fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
         fish -C "fisher install adamchristiansen/vertical-fish"
         cd
@@ -38,12 +38,6 @@ jobs:
       with:
         mode: ngrok
       env:
-        # You can find this token here: https://dashboard.ngrok.com/auth/your-authtoken
         NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
-        # ngrok server region [us, eu, au, ap, sa, jp, in] (optional, default: us)
         NGROK_REGION: us
-        # This password you will use when authorizing via SSH
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-        # Send connection info to Telegram (optional)
-        #TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        #TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
