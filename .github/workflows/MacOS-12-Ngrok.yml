@@ -1,10 +1,10 @@
-name: MacOS Ngrok
+name: 'MacOS-12: Ngrok'
 
 on:
   workflow_dispatch:
 
 jobs:
-  ssh:
+  MacOS-12-Ngrok:
     runs-on: macos-12
 
     steps:
