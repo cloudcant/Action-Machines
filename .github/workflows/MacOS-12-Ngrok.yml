@@ -24,6 +24,12 @@ jobs:
             TCPKeepAlive yes
             IdentitiesOnly yes
         EOF
+    - name: Setting up shell
+      run: |
+        brew install fish neofetch
+        fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+        fish -C "fisher install adamchristiansen/vertical-fish"
+        sed -i '.bak' '1s/^/fish\'$'\n/g' ~/.bashrc
     - name: Start SSH via ngrok
       continue-on-error: true
       timeout-minutes: 350
