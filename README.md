@@ -10,11 +10,10 @@ _Relies on P3TERX/ssh2actions@main, go check out their page_
 ## _Preparation_
 
 1. Fork This Repo
-2. For ngrok Machines, Add your ngrok authtoken as `NGROK_TOKEN` in the Repository Secrets
+2. For ngrok Connections, Add your ngrok authtoken as `NGROK_TOKEN` aswell as a shell login password as `SSH_PASSWORD` in the Repository Secrets
    > You can find this token here: https://dashboard.ngrok.com/auth/your-authtoken
-3. Add a shell login password as `SSH_PASSWORD` in the Repository Secrets
-4. Go to Actions tab, select the workflow name you want, and run it through `workflow_dispatch` method
-5. To connect , either connect with ssh through ngrok (if you choose ngrok), ssh through tmate , or through the tmate webshell. The connection info will show in the logs.
+3. Go to Actions tab, select the workflow name you want, and run it through `workflow_dispatch` method
+4. To connect , either connect with ssh through ngrok (if you choose ngrok), ssh through tmate , or through the tmate webshell. The connection info will show in the logs.
 
 ## _ScreenShots_
 
