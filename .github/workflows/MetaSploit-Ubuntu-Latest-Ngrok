@@ -1,4 +1,4 @@
-name: 'Metasploit: Ubuntu-Latest: Ngrok'
+name: 'Ubuntu-Latest-Msf: Ngrok'
 
 on:
   workflow_dispatch:
