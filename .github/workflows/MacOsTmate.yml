@@ -1,10 +1,10 @@
-name: MacOS Tmate
+name: 'MacOS-12: Tmate'
 
 on:
   workflow_dispatch:
 
 jobs:
-  ssh:
+  MacOS-12-Tmate:
     runs-on: macos-12
 
     steps:
