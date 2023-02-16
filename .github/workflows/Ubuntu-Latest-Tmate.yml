@@ -1,10 +1,10 @@
-name: Ubuntu Tmate
+name: 'Ubuntu-Latest: Tmate'
 
 on:
   workflow_dispatch:
 
 jobs:
-  Ubuntu-Latest:
+  Ubuntu-Latest-Tmate:
     runs-on: ubuntu-latest
 
     steps:
