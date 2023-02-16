@@ -1,0 +1,46 @@
+name: 'Metasploit: Ubuntu-Latest: Ngrok'
+
+on:
+  workflow_dispatch:
+
+jobs:
+   Ubuntu-Latest:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: SSH Keepalive Hack
+      run: |
+        mkdir -p ~/.ssh
+        cat << EOF > ~/.ssh/config
+        Host *
+            ServerAliveInterval 60
+            StrictHostKeyChecking no
+        Host github.com
+            User git
+            Port 22
+            Hostname github.com
+            TCPKeepAlive yes
+            IdentitiesOnly yes
+        EOF
+    - name: Setting up shell
+      run: |
+        sudo apt install fish neofetch speedtest-cli
+        fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+        fish -C "fisher install adamchristiansen/vertical-fish"
+        cd
+        sed -i '1s/^/fish /' .bashrc
+    - name: Installing MetaSploit Framework
+      run |
+      curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \chmod 755 msfinstall && \./msfinstall
+    - name: Start SSH via ngrok
+      continue-on-error: true
+      timeout-minutes: 350
+      uses: P3TERX/ssh2actions@main
+      with:
+        mode: ngrok
+      env:
+        NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+        NGROK_REGION: us
+        SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
