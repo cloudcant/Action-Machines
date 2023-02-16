@@ -24,6 +24,13 @@ jobs:
             TCPKeepAlive yes
             IdentitiesOnly yes
         EOF
+    - name: Setting up shell
+      run: |
+        sudo apt install fish neofetch
+        fish -C "curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher"
+        fish -C "fisher install adamchristiansen/vertical-fish"
+        cd
+        sed -i '1s/^/fish /' .bashrc
     - name: Start SSH via ngrok
       continue-on-error: true
       timeout-minutes: 350
